@@ -37,8 +37,8 @@ else
       echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
       sudo apt update && sudo apt install -y terraform
       ;;
-    rhel|centos|fedora)
-      echo "Installing Terraform on RHEL/CentOS/Fedora"
+    rhel|centos|fedora|almalinux)
+      echo "Installing Terraform on RHEL/CentOS/Fedora/AlmaLinux"
       sudo yum install -y yum-utils
       sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
       sudo yum -y install terraform
@@ -125,9 +125,27 @@ else
     sudo installer -pkg AWSCLIV2.pkg -target /
     rm AWSCLIV2.pkg
   else
-    echo "Installing AWS CLI on Linux (Debian/Ubuntu or RHEL/CentOS/Fedora)"
+    # For Linux: determine distribution to choose package manager
+    if [ -f /etc/os-release ]; then
+      . /etc/os-release
+      OS_ID=$ID
+    else
+      echo "Unable to determine the Linux distribution"
+      exit 1
+    fi
+
+    if [ "$OS_ID" = "debian" ] || [ "$OS_ID" = "ubuntu" ]; then
+      echo "Installing AWS CLI on Debian/Ubuntu"
+      sudo apt install -y unzip
+    elif [ "$OS_ID" = "rhel" ] || [ "$OS_ID" = "centos" ] || [ "$OS_ID" = "fedora" ] || [ "$OS_ID" = "almalinux" ]; then
+      echo "Installing AWS CLI on RHEL/CentOS/Fedora/AlmaLinux"
+      sudo yum install -y unzip
+    else
+      echo "Unsupported Linux distribution. Please install AWS CLI manually."
+      exit 1
+    fi
+
     curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-    sudo apt install unzip -y
     unzip awscliv2.zip
     sudo ./aws/install
     rm -rf aws awscliv2.zip
