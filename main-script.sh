@@ -127,6 +127,7 @@ else
   else
     echo "Installing AWS CLI on Linux (Debian/Ubuntu or RHEL/CentOS/Fedora)"
     curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+    apt install unzip
     unzip awscliv2.zip
     sudo ./aws/install
     rm -rf aws awscliv2.zip
