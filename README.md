@@ -97,3 +97,10 @@ The script performs the following steps:
 - `TAG_KEY` - `environment`
 - `TAG_VALUE` - `development`
 - `VPC_ID` - `vpc-08dbc022f03e4db9b`
+
+
+**IMPROVEMENT PLAN**
+
+- `Improve Securrity Group - Ingress/Egress rules`
+- `Additional Addones like EBS, EFS, etc.`
+- `ControlPlane without external access - implemet bastion host or VPN access`
