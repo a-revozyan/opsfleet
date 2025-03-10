@@ -59,6 +59,7 @@ Addons
 1. EKS ControlPlane is accessible through public address. It should be external because of avoiding VPN 
 
 To automatically deploy the project, run the `main-script.sh` script:
+`main-script.sh` has been checked on `ubuntu` and `alma` linux. That script should work correctly on macos, rhel, etc. However, I haven't had enough time to check it out.
 
 1. **Make the script executable and run it:**
    ```bash
