@@ -6,11 +6,8 @@ The company wants to build its initial Kubernetes infrastructure on AWS. The tea
 
 They have asked you if you can help create the following:
 
-Terraform code that deploys an EKS cluster (whatever latest version is currently available) into an existing VPC
-
-The terraform code should also deploy Karpenter with node pool(s) that can deploy both x86 and arm64 instances
-
-Include a short readme that explains how to use the Terraform repo and that also demonstrates how an end-user (a developer from the company) can run a pod/deployment on x86 or Graviton instance inside the cluster.
+- **Terraform code** that deploys an EKS cluster (whatever latest version is currently available) into an existing VPC.
+- The Terraform code should also deploy **Karpenter** with node pool(s) that can deploy both x86 and arm64 instances..
 
 # Project Overview
 
@@ -87,6 +84,7 @@ The script performs the following steps:
 12. **Save the provided data:**  
     A corresponding `destroy-script.sh` will use the same values to run `terraform destroy` for resource cleanup.
     You should delete all your deployment/pods before running `destroy-script.sh`.
+    It may be needed to run `destroy-script.sh` twice.
 
 **Example values for deployment and destruction scripts:**
 
