@@ -86,6 +86,7 @@ The script performs the following steps:
 11. **Deploy Karpenter NodePool and EC2NodeClass.**
 12. **Save the provided data:**  
     A corresponding `destroy-script.sh` will use the same values to run `terraform destroy` for resource cleanup.
+    You should delete all your deployment/pods before running `destroy-script.sh`.
 
 **Example values for deployment and destruction scripts:**
 
