@@ -35,7 +35,11 @@ This project deploys an EKS cluster with a managed node group and two custom IAM
   - **NodePool "spot":** Defines a node pool with specific requirements (architecture, OS, spot capacity type, instance category, and generation), a CPU limit, an expiration time of 720 hours, and a consolidation policy.  
   - **EC2NodeClass "default":** Specifies the parameters for creating EC2 instances for the node pool, including the IAM role (provided by the `KARPENTER_ROLE` variable), the AMI selection via alias, and selectors for subnets and security groups based on the cluster tag (`CLUSTER_NAME`).
 
-In the repository root, there is a test Kubernetes manifes `test-deployment.yaml` that can be applied to observe how a worker node is created.
+**In the repository root, there is a test Kubernetes manifes `test-deployment.yaml` that can be applied to observe how a worker node is created.**
+- The main parts of the deployment are: 
+  - **karpenter.sh/capacity-type: spot**
+  - **kubernetes.io/arch: "amd64"  # or arm64** - you should select which one do you prefer
+  
 
 ---
 
